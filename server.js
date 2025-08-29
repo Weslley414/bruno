@@ -1,6 +1,6 @@
 import app from './src/app.js'
 
-import conexao from './infra/conexao.js'
+import conexao from './src/app/database/conexao.js'
 
 const port = 3000
 

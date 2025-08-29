@@ -1,5 +1,6 @@
 import express from 'express';
-import conexao from '../infra/conexao.js'
+import conexao from './app/database/conexao.js'
+import CursoController from './app/controllers/CursoController.js';
 const app = express()
 
 //indicar para o express ler o body como json
@@ -30,96 +31,23 @@ function buscarIndexCurso(id) {
 
 // ROTAS
 
-app.get('/cursos', (req, res)=> {
-    // res.status(200).send(cursos)
-    const sql = "SELECT * FROM cursos;"
-    conexao.query(sql, (error, result) => {
-        if (error) {
-            console.log(error)
-        } else {
-            res.status(200) .json(result)
-        }
-    })
-})
+app.get('/cursos',CursoController.index)
 
 //
-app.post('/cursos', (req, res) => {
-  const { disciplina } = req.body 
-
-  if (!disciplina) { 
-    return res.status(400).json({ erro: "Campo 'disciplina' é obrigatório" })
-  }
-
+app.post('/cursos',CursoController.index)
   
-  const sql = "INSERT INTO cursos (disciplina) VALUES (?)"
-  conexao.query(sql, [disciplina], (error, result) => {
-    if (error) {
-      console.error("Erro ao inserir curso:", error)
-      res.status(500).json({ erro: "Erro ao cadastrar curso" })
-    } else {
-      
-      res.status(201).json({ id: result.insertId, disciplina })
-    }
-  })
-})
 
 //
-app.get('/cursos/:id', (req, res) => {
-  const { id } = req.params 
-
-  const sql = "SELECT * FROM cursos WHERE id = ?"
-  conexao.query(sql, [id], (error, results) => {
-    if (error) {
-      console.error("Erro ao buscar cursos:", error)
-      res.status(500).json({ erro: "Erro ao consultar curso" })
-    } else if (results.length === 0) {
-      
-      res.status(404).json({ msg: "Cursos não encontrado" })
-    } else {
-      res.status(200).json(results[0]) 
-    }
-  })
-})
+app.get('/cursos/:id',CursoController.index)
+  
 
 //
-app.put('/cursos/:id', (req, res) => {
-  const { id } = req.params            
-  const { disciplina } = req.body      
+app.put('/cursos/:id',CursoController.index)
 
-  if (!disciplina) {
-    return res.status(400).json({ erro: "Campo 'disciplina' é obrigatório" })
-  }
-
-  const sql = "UPDATE cursos SET disciplina = ? WHERE id = ?"
-  conexao.query(sql, [disciplina, id], (error, result) => {
-    if (error) {
-      console.error("Erro ao atualizar cursos:", error)
-      res.status(500).json({ erro: "Erro ao atualizar cursos" })
-    } else if (result.affectedRows === 0) {
-      
-      res.status(404).json({ msg: "Cursos não encontrado" })
-    } else {
-      res.status(200).json({ id, disciplina }) 
-    }
-  })
-})
 
 // 
-app.delete('/cursos/:id', (req, res) => {
-  const { id } = req.params 
-
-  const sql = "DELETE FROM cursos WHERE id = ?"
-  conexao.query(sql, [id], (error, result) => {
-    if (error) {
-      console.error("Erro ao excluir cursos:", error)
-      res.status(500).json({ erro: "Erro ao excluir cursos" })
-    } else if (result.affectedRows === 0) {
-      res.status(404).json({ msg: "Cursos não encontrado" })
-    } else {
-      res.status(200).json({ msg: `Cursos ${id} excluído com sucesso!` })
-    }
-  })
-})
+app.delete('/cursos/:id',CursoController.index)
+  
 
 app.post('/cursos', (req, res)=> {
     cursos.push(req.body)
