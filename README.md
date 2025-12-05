@@ -1,7 +1,7 @@
 # Projeto-front-end
 
 ## 📌 Descrição
-Projeto desenvolvido para estudo/prática de front-end. Aqui você encontra a interface e funcionalidades implementadas.
+O Projeto Bruno é uma aplicação front-end desenvolvida como prática de desenvolvimento web. Ele demonstra conceitos de layout, interação e responsividade, servindo como estudo de boas práticas em HTML, CSS e JavaScript.
 
 ## 🚀 Tecnologias usadas
 - HTML
@@ -10,7 +10,10 @@ Projeto desenvolvido para estudo/prática de front-end. Aqui você encontra a in
 
 
 ## 🎯 Objetivo
-Criar uma aplicação front-end funcional para praticar conceitos de layout, responsividade e interação.
+O objetivo do projeto é criar uma interface funcional e agradável, aplicando conhecimentos de front-end, como:  
+- Estruturação de páginas web  
+- Estilos CSS e responsividade  
+- Interatividade com JavaScript  
 
 ## ⚙️ Como rodar
 1. Clone o repositório:
